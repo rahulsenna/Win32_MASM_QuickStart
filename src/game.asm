@@ -31,7 +31,7 @@ UpdateAndRender PROC
 
 
         
-
+comment !
 ;-----[Display Grid]-------------------------------------------
     mov rdi, GameBackBuffer
     mov rax, BUF_WIDTH
@@ -48,7 +48,7 @@ ContinuePaint:
     ; cld               ; this is important many  window's function will throw if this is not cleared
 
     mDrawCircle 100, 100, 200, GameBackBuffer
-
+!
 
 
     ret

@@ -85,7 +85,6 @@ win32_offscreen_buffer ENDS
 
     WinDim  RECT <0,0,WIN_WIDTH,WIN_HEIGHT>
 
-    ElementSelected    BYTE 0
 
     deltaTime  REAL4 ?
     QPC_Begin  REAL8 ?
@@ -150,6 +149,7 @@ Startup     PROC
     mov DeviceContext, rax
 
     WinCall QueryPerformanceFrequency, OFFSET QPF
+    mDrawCircle 100, 100, 200, GameBackBuffer
 
 ;-----[Main Loop]--------------------------------------------------
 Message_Loop:
@@ -215,11 +215,11 @@ HandleMouse PROC
         ;-----[Mouse Left Button Clicked ?]-------------------------------------------
             test KeyState,LBUTTON
             jz NotSand  ; if rax == 08000h (1 << 15) ; zero flag will be cleared
-            mov ElementSelected,SAND_ID
+            nop
         NotSand:
             test KeyState,RBUTTON
             jz NotWater
-            mov ElementSelected,WATER_ID
+            nop
         NotWater:
         ;-----[Is mouse pointer inside the window ?]-------------------------------------------
             cmp MouseP.y,WIN_HEIGHT-1
@@ -249,7 +249,7 @@ HandleMouse PROC
                 
                 xor r10,r10
                 xor r9,r9
-                mov rsi, GridMemory
+                mov rsi, GameBackBuffer
                 mov r8, BUF_WIDTH
                 xor rbx,rbx
                 mov r9d, MouseP.y
@@ -307,17 +307,17 @@ HandleMouse PROC
 
 
                 
-                mov rax,r8
-                mov rbx,r9
+                mov rax,r8         ; r8 = BufferWidth
+                mov rbx,r9         ; r9 = Y
                 add ebx,r12d       ; Y+ry
                 mul rbx
                 
         
-                add rax,r10
+                add rax,r10        ; r10 = X
                 add eax,r11d       ; X+rx
 
-                mov bl,ElementSelected
-                mov [rsi+rax], bl  ;
+                nop
+                mov  DWORD PTR [rsi+rax*4-4], 0FFFF0000h  ;
 
 
     ; Loop PutElem
