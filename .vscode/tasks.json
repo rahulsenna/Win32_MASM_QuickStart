@@ -1,0 +1,43 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "${workspaceFolder}/misc/go.ps1",
+            "args": [],
+            "problemMatcher": [
+                "$msCompile",
+                {
+                    "fileLocation": "autoDetect",
+                    "owner": "linker",
+                    "source": "main.asm",
+                    "pattern": 
+                    {
+                      "regexp": "^([^\\s].*)\\s:\\s(?:fatal\\s)?(error|warning)\\s(LNK\\d+):\\s(.*)$",
+                      "kind": "file",
+                      "severity": 2,
+                      "code": 3,
+                      "message": 4,
+                    //   "file": 3
+                    }
+                },
+
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+            },
+            "presentation": {
+                "echo": false,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            },
+
+            "detail": "compiler: ml64.exe",
+            "group": "build",
+        }
+    ]
+}
