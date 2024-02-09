@@ -1,4 +1,4 @@
-.listall
+
     OPTION casemap:none
 
 
