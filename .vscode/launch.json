@@ -5,7 +5,7 @@
             "name": "(Windows) Launch",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/SandSim.exe",
+            "program": "${workspaceFolder}/bin/MainApp.exe",
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/bin",
             "environment": [],

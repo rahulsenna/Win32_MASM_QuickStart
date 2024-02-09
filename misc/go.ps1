@@ -2,7 +2,7 @@ $workspaceFolder = Get-Location
 if (-not (Test-Path -Path "bin")) { mkdir bin }
 pushd bin
 ml64.exe /I $workspaceFolder\win32_api /Fl /Sf /c /Cp /Cx /Fm /FR /W2 /Zd /Zf /Zi /Ta $workspaceFolder\src\game.asm $workspaceFolder\src\main.asm
-link.exe game.obj main.obj /debug:full /opt:ref /opt:noicf /largeaddressaware:no /entry:Startup /machine:x64 /map /out:SandSim.exe /PDB:Main.pdb /subsystem:windows,6.0 kernel32.lib user32.lib Gdi32.lib  
+link.exe game.obj main.obj /debug:full /opt:ref /opt:noicf /largeaddressaware:no /entry:Startup /machine:x64 /map /out:MainApp.exe /PDB:Main.pdb /subsystem:windows,6.0 kernel32.lib user32.lib Gdi32.lib  
 
 popd
 
